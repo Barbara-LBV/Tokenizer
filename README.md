@@ -21,12 +21,18 @@ J'ai opte pour le portefeuille(wallet) Metamask, compatible avec les normes Ethe
 Facile a installer - c'est une simple extension compatible avec la plupart des navigateurs.
 Puis il suffit de choisir le bon masque.
 ```
-Usage : pour deployer le contrat sur un "testnet" de la blockchain Ethereum.
+Usage : pour deployer le contrat sur un "testnet" de la blockchain Ethereum, et faire toutes les actions que l'on souhaite sur son compte.
 ```
+
+## faucet
+Un Faucet est un outil qui permet de recuperer des Sepolia ETH (ou n'importe quelle currency) pour faire des tests. N'a pas de valeur reelle.
 
 ## Testnet  
 Sepolia, pour rester conforme/logique avec les normes Ethereum que j'ai choisi
 https://sepolia.etherscan.io/ 
 ```
-usage : plateforme permettant de deployer ses contrats, et tester les actions qui leurs sont liees, et applicables aux tokens, comme les transferts, les ...
+usage : plateforme permettant de deployer ses contrats, et tester les actions qui leurs sont liees, et applicables aux tokens, comme les transferts
 ```
+Etherscann Sepolia est en lecture seule pour voir les transfert, Meatmask fait les actions demandees.
+
+## RPC ??
