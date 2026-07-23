@@ -1,38 +1,61 @@
+# Tokenizer
 
+Projet de création de jeton dans la blockchain de son choix.
+Il devra etre possible de faire des échanges de données, des transferts de privilèges ou de propriété des tokens.
 
-## Smart Contrat
-Pour le smart contract en Solidity, j'ai choisi d'importer la class ERC20 depuis
-OpenZeppelin, permettant de ne pas avoir à ré-écrire les fonctions nécessaires à 
-l'édition d'un smart contract sur Ethereum.
-**Economie de code, et source d'erreurs moindre**
 ```
-Usage : un "Smart Contract" permet de s'assure que les tokens envoyes dans la Blockchain a laquelle ils sont lies, sont bien conformes, et "identiques" a ceux deja presents => equivalence, securite, ownership
+Noter que dans le cadre de ce projet pédagogique, il n'est donc pas question ici de mettre du "vrai" argent dans la blockchain.
 ```
 
-## Plateforme IDE
-Pour la plateforme, j'ai choisi Remix en ligne c'est une app web, il n'y a rien a installer de plus 
-sur mon ordi. Par ailleurs, Remix dispose de cours et de ressources tres utiles pour debuter, et comprendre les enjeux de la blockchain et de la crypto.
+## Choix de sa blockchain
+
+Il existe de nombreuses blockchains disponibles.
+
+Exemples :
+  - Ethereum
+  - BNBChain
+  - Bitcoin
+  - etc
+
+Il est important de bien choisir la sienne.
+Généralement, les critères principaux sont :
 ```
-Usage : ecrire et tester les "Smart Contracts"
+  - Le coût des transactions (frais de gas)
+  - La rapidité et la scalabilité (transactions/sec)
+  - La sécurité et la décentralisation du réseau
+  - L'écosystème disponible (outils, documentation, communauté de développeurs ...)
 ```
 
-## Portefeuille
-J'ai opte pour le portefeuille(wallet) Metamask, compatible avec les normes Ethereum et BNB Chain.
-Facile a installer - c'est une simple extension compatible avec la plupart des navigateurs.
-Puis il suffit de choisir le bon masque.
+Dans le cadre de ce projet, Ethereum apparaît comme la blockchain adéquate :
+- Son *"Smart Contract"* en Solidity - le langage le plus utilisé pour implémenter ces contrats, avec des normes claires et solides. 
+Ici, **ERC-20 pour Ethereum**, un standard conçu pour représenter des tokens fongibles (FT) et gérer leurs transferts de propriété, ce qui correspond a la consigne.
+- Un réseau parmi les plus sécurisés et éprouvés (large communauté de développeurs, code source largement audité).
+- Un écosystème riche et mature, qui facilite grandement l'apprentissage : 
+
+    - Plusieurs Testnets disponibles et opérationnels (ici **Sepolia**), 
+    - Faucets divers pour récupérer de la monnaie de test (ici **Google Faucet**),  
+    - Compatibilité avec **Metamask** (Portefeuille/Wallet facile à utiliser, notamment en extension de navigateur) 
+    - Déploiement possible directement en ligne avec l'outil **Remix** (IDE en ligne).
+    
+- Une documentation claire et importante.
+
 ```
-Usage : pour deployer le contrat sur un "testnet" de la blockchain Ethereum, et faire toutes les actions que l'on souhaite sur son compte.
+A noter, sur testnet, le coût et la rapidité des transactions (points faibles connus d'Ethereum sur son réseau principal) ne sont pas un frein pour ce projet.
 ```
 
-## faucet
-Un Faucet est un outil qui permet de recuperer des Sepolia ETH (ou n'importe quelle currency) pour faire des tests. N'a pas de valeur reelle.
+## Organisation du Projet
 
-## Testnet  
-Sepolia, pour rester conforme/logique avec les normes Ethereum que j'ai choisi
-https://sepolia.etherscan.io/ 
-```
-usage : plateforme permettant de deployer ses contrats, et tester les actions qui leurs sont liees, et applicables aux tokens, comme les transferts
-```
-Etherscann Sepolia est en lecture seule pour voir les transfert, Meatmask fait les actions demandees.
+Voici le contenu de ce repo :
 
-## RPC ??
+```
+.
+├── README.md           → présentation du projet et des choix effectués
+├── code/               → smart contract(s) ERC-20 et leurs tests
+├── deployment/         → scripts et configuration de déploiement (testnet)
+└── documentation/      → documentation claire (whitepaper, adresse du contrat déployé, réseau utilisé, etc.)
+```
+
+- **code/** : contient le Smart Contract du token (norme ERC-20) ainsi que ses tests. Le code est commenté, avec des noms de variables/fonctions explicites.
+- **deployment/** : contient tout ce qui est nécessaire pour déployer le token sur une blockchain publique de test (Sepolia).
+- **documentation/** : contient la documentation du projet (whitepaper), expliquant le fonctionnement du token, son utilité, ainsi que l'adresse du smart contract et le réseau utilisé une fois déployé.
+
