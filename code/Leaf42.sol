@@ -1,8 +1,11 @@
-
-// SPDX-License-Identifier: MIT // reusable code
+// SPDX-License-Identifier: MIT 
+// reusable code pour eviter les warning sur Remix
 pragma solidity ^0.8.3;
 
-import "@openzeppelin/contracts@4.9.6/token/ERC20/ERC20.sol"; // 
+// import de la class ERC20 openzeppelin - heritage des fonctions
+import "@openzeppelin/contracts@4.9.6/token/ERC20/ERC20.sol"; 
+
+// import de Ownable de la librairie openzeppelin pour gerer les proprietes et privileges
 import "@openzeppelin/contracts@4.9.6/access/Ownable.sol";
 
 contract Leaf42 is ERC20, Ownable {
