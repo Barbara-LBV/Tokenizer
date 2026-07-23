@@ -13,7 +13,7 @@
 import { ethers } from 'ethers'
 
 const contractName = 'Leaf42'
-const constructorArgs = [1000] // initialSupply
+const constructorArgs = [1000] // initialSupply()
 
 ;(async () => {
   try {

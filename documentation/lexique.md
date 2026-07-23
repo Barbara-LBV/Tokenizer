@@ -1,67 +1,98 @@
-# 
+# Lexique Général
+
+## Web3
+Terme utilisé pour définir un web décentralisé utilisant la technologie des blockckains, différent du web 2.0, qui désigne le “web social et interactif” utilisé majoritairement aujourd’hui. 
+Un réseau blockchain peut avoir des applications décentralisées (*decentralized applications* ou *DApps*)
 
 ## Blockchain
-La blockchain est 
+La blockchain est un registre numérique de transactions, distribué et dupliqué sur de nombreux ordinateurs (les "nœuds") du réseau, plutôt que stocké à un seul endroit par une autorité centrale.
+Les transactions y sont regroupées par blocs, chaque bloc étant lié cryptographiquement au précédent (d'où le nom "chaîne de blocs") : une fois inscrites, les données ne peuvent plus être modifiées ou supprimées.
+Les nœuds du réseau se mettent d'accord entre eux (via un mécanisme de "consensus") sur l'état valide de ce registre, ce qui rend la blockchain décentralisée, transparente et sécurisée sans avoir besoin de faire confiance à un tiers unique.
 
 
 ## Token
+Genre de monnaie d'échange
+La blockchain distingue deux types de tokens : 
+ - Tokens Tongibles (**FT** - *Fungible Token*) : éléments/produits qui se ressemblent et peuvent donc se substituer.
+ - Non-Fongible (**NFT** - *Non Fungible Tokens*): sont à l’inverse, des produits qui sont uniques, donc non interchangeables.
+```
+ex : 
+FT  = un billet de 50€, une pièce de 1€
+NFT = oeuvre d’art, maison, voiture ...
 
-
-
-
-
-## Smart Contrat
-Pour le smart contract en Solidity, j'ai choisi d'importer la class ERC20 depuis
-OpenZeppelin, permettant de ne pas avoir à ré-écrire les fonctions nécessaires à 
-l'édition d'un smart contract sur Ethereum.
+```
+## Smart Contract
+Le *Smart Contract* est implemente dans le langage **Solidity**. J'ai choisi en plus d'importer la classe ERC20 depuis *OpenZeppelin*, permettant de ne pas avoir à ré-écrire les fonctions nécessaires à 
+l'édition d'un Smart Contract aux normes ERC20 sur Ethereum.
 **Economie de code, et source d'erreurs moindre**
 ```
 Usage : un "Smart Contract" permet de s'assure que les tokens envoyes dans la Blockchain a laquelle ils sont lies, sont bien conformes, et "identiques" a ceux deja presents => equivalence, securite, ownership
 ```
 
-## La Propriete - Ownership
-Un jeton/token peut a un proprietaire, et peut etre ceder a qql d'autre, il change alors de proprietaire.
-Sa propriete peut aussi etre "cedee", sans qu'il y ait preneur (a verifier)
+## Norme ERC20
+Pour pouvoir échanger entre eux le plus simplement possible, via un Smart Contract”, il existe des normes qu’un token doit respecter pour intégrer une blockchain. 
+Une des plus populaires est celle d’Ethereum, avec sa norme de token ERC20 pour les tokens FT, et ERC-721 pour les NFT. 
+Pour etre conforme aux normes ERC20, notre Smart Contract Ethereum doit avoir :
+
+Les 6 fonctions suivantes
+
+- **totalSupply()** : renvoie le nombre total de tokens existants (l'offre totale en circulation).
+
+- **balanceOf(address)** : renvoie le solde de tokens d'une adresse donnée.
+
+- **transfer(to, amount)** : transfère directement des tokens depuis le compte de l'appelant vers une adresse donnée.
+
+- **approve(spender, amount)** : autorise une adresse (`spender`) à dépenser un montant donné de tokens au nom de l'appelant.
+
+- **allowance(owner, spender)** : renvoie le montant de tokens qu'un `spender` est encore autorisé à dépenser au nom d'un `owner`.
+
+- **transferFrom(from, to, amount)** : transfère des tokens au nom d'un autre compte, dans la limite de l'autorisation (`allowance`) accordée via `approve()`.
+
+
+Et pouvoir émettre 2 évènements : 
+- **Transfer** : émis à chaque transfert de tokens (via `transfer()` ou `transferFrom()`), y compris à la création (`mint`, avec `from` = adresse zéro) ou à la destruction de tokens.
+    
+- **Approval** : émis à chaque appel de `approve()`, pour signaler qu'un `spender` a reçu (ou vu modifier) son autorisation de dépense.
+
+
+Options :
+
+Extensions courantes, non imposées par la norme ERC20 mais souvent ajoutées : 
+`name()`, `symbol()`, `decimals()` (métadonnées du token), ainsi que `mint()`/`burn()` (création/destruction de tokens) ou `Ownable` (gestion d'un propriétaire et de ses privilèges).
+
+
+## La Propriété - Ownership
+Un jeton/token peut a un propriétaire, et peut etre céder a quelqun'un d'autre : le token change alors de propriétaire.
+Sa propriété peut aussi etre "cédée", sans qu'il y ait preneur (a vérifier)
 
 ## Les Privileges
-Un token a un proprietaire, qui peut tout de meme ceder des droits de transfert (ou autre) a un autre "compte".
-Ainsi, un compte B pourra effectuer des transferts etc a nom du compte A.
+Un token a un propriétaire, qui peut tout de meme céder des droits de transfert (ou autre) a un autre "compte".
+Ainsi, un compte B pourra effectuer des transferts (etc) au nom du compte A.
 Question : ces comptes doivent-ils appartenir a la meme personne (ou non) ?
 
-
 ## Plateforme IDE
-Pour la plateforme, j'ai choisi Remix en ligne c'est une app web, il n'y a rien a installer de plus 
-sur mon ordi. Par ailleurs, Remix dispose de cours et de ressources tres utiles pour debuter, et comprendre les enjeux de la blockchain et de la crypto.
-```
-Usage : ecrire et tester les "Smart Contracts"
-```
+Les plateformes IDE permettent d'Implementer, de Compiler et Deployer les Smart Contracts, et de tester les transactions.
 
 ## Portefeuille
-J'ai opte pour le portefeuille(wallet) Metamask, compatible avec les normes Ethereum et BNB Chain.
-Facile a installer - c'est une simple extension compatible avec la plupart des navigateurs.
-Puis il suffit de choisir le bon masque.
-```
-Usage : pour deployer le contrat sur un "testnet" de la blockchain Ethereum, et faire toutes les actions que l'on souhaite sur son compte.
-```
+Pour déployer le contrat sur un "testnet" de la blockchain Ethereum, et faire toutes les actions que l'on souhaite sur son compte : transfert de Tokens, de privileges, de propriete.
 
 ## Faucet
-Un Faucet est un outil qui permet de recuperer des Sepolia ETH (ou n'importe quelle currency) pour faire des tests. N'a pas de valeur reelle.
+Un Faucet est un outil qui permet de récupérer des Sepolia ETH (ou n'importe quelle currency/crypto-monnaie) pour faire des tests. N'a pas de valeur réelle.
 
 ## Testnet  
-Sepolia, pour rester conforme/logique avec les normes Ethereum que j'ai choisi
-https://sepolia.etherscan.io/ 
+Reseau blockchain de test, permettant de verifier l'etat d'un compte lie a ce reseau, ainsi que les transactions effectuees par le compte sur la testnet.
+
+Exploreur : [Sepolia](https://sepolia.etherscan.io/)
 ```
-usage : plateforme permettant de deployer ses contrats, et tester les actions qui leurs sont liees, et applicables aux tokens, comme les transferts.
+NB : Etherscann Sepolia est en lecture seule pour voir les transfert, Meatmask fait les actions demandees.
 ```
-Etherscann Sepolia est en lecture seule pour voir les transfert, Meatmask fait les actions demandees.
 
 ## RPC = Remote Procedure Call
-
-Le protocole/l'interface qui permet à une application (comme Metamask, ou Remix) de **communiquer avec un nœud de la blockchain** — c'est-à-dire d'envoyer des requêtes ("quel est le solde de cette adresse ?", "envoie cette transaction") et de recevoir des réponses, sans avoir à héberger toi-même une copie complète de la blockchain.
+Le protocole/l'interface qui permet à une application (comme Metamask, ou Remix) de **communiquer avec un nœud de la blockchain** — c'est-à-dire d'envoyer des requêtes (*"quel est le solde de cette adresse ?", "envoie cette transaction"*) et de recevoir des réponses, sans avoir à héberger soi-même une copie complète de la blockchain.
 
 **Dans le contexte Metamask + Sepolia**
 
-Sepolia est un réseau composé de milliers de nœuds. Pour que Metamask puisse lire l'état de ce réseau ou envoyer tes transactions, il a besoin de l'**URL d'un point d'accès RPC** — un serveur qui fait l'intermédiaire entre ton navigateur et le réseau Sepolia.
+Sepolia est un réseau composé de milliers de nœuds. Pour que Metamask puisse lire l'état de ce réseau ou envoyer des transactions, il a besoin de l'**URL d'un point d'accès RPC** — un serveur qui fait l'intermédiaire entre ton navigateur et le réseau Sepolia.
 
 Cette URL RPC est ce qui définit, dans les paramètres réseau de Metamask, **à quel réseau tu es connecté** :
 - Pour Ethereum Mainnet → une URL RPC vers le mainnet
@@ -87,7 +118,7 @@ C'est un fichier au format JSON qui décrit **l'interface** du smart contract :
 
 **Pourquoi c'est nécessaire**
 
-Un smart contract déployé sur la blockchain n'existe, au niveau le plus bas, que sous forme de **bytecode**. Ce bytecode ne contient pas les noms de fonctions lisibles comme `mint()` ou `transfer()` — tout est compilé en sélecteurs de fonction (des hashs de 4 octets).
+Un Smart Contract déployé sur la blockchain n'existe, au niveau le plus bas, que sous forme de **bytecode**. Ce bytecode ne contient pas les noms de fonctions lisibles comme `mint()` ou `transfer()` — tout est compilé en sélecteurs de fonction (des hashs de 4 octets).
 
 L'ABI sert de "traducteur" entre :
 - le code humain (`monContrat.mint(adresse, montant)`)
@@ -99,10 +130,10 @@ Sans l'ABI, un outil externe (un script web3.js/ethers.js, Metamask, un site fro
 
 voir fichier abi.json
 
-**À quoi ça te sert concrètement**
+**À quoi cela sert concrètement**
 
 - Réutiliser le contrat depuis un script (ex: `ethers.js`) : tu as besoin de l'**adresse** + l'**ABI** pour créer une instance et appeler ses fonctions
 - Reconnecter un contrat déjà déployé dans Remix via "At Address"
 - Documenter le projet : montrer l'interface publique du token
 
-Doc officielle Solidity : https://docs.soliditylang.org/en/latest/abi-spec.html
+Doc officielle : [Solidity](https://docs.soliditylang.org/en/latest/abi-spec.html)

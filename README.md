@@ -55,7 +55,6 @@ Voici le contenu de ce repo :
 └── documentation/      → documentation claire (whitepaper, adresse du contrat déployé, réseau utilisé, etc.)
 ```
 
-- **code/** : contient le Smart Contract du token (norme ERC-20) ainsi que ses tests. Le code est commenté, avec des noms de variables/fonctions explicites.
+- **code/** : contient le Smart Contract du Token (norme ERC-20) ainsi que ses tests. Le code est commenté, avec des noms de variables/fonctions explicites.
 - **deployment/** : contient tout ce qui est nécessaire pour déployer le token sur une blockchain publique de test (Sepolia).
 - **documentation/** : contient la documentation du projet (whitepaper), expliquant le fonctionnement du token, son utilité, ainsi que l'adresse du smart contract et le réseau utilisé une fois déployé.
-
